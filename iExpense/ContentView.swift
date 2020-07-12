@@ -8,14 +8,40 @@
 
 import SwiftUI
 
+struct User: Codable {
+    var firstName: String
+    var lastName: String
+}
 
 struct ContentView: View {
-    @State private var tapCount: Int = UserDefaults.standard.integer(forKey: "Tap")
+    @State private var user = User(firstName: "Nate", lastName: "Lee")
     
     var body: some View {
-        Button("Tap Count: \(tapCount)") {
-            self.tapCount += 1
-            UserDefaults.standard.set(self.tapCount, forKey: "Tap")
+        VStack {
+            Text("\(user.firstName) \(user.lastName)")
+            
+            TextField("First Name", text: $user.firstName)
+            TextField("Last Name", text: $user.lastName)
+            
+            Button("Serialize") {
+                let encoder = JSONEncoder()
+                do {
+                    let encoded = try encoder.encode(self.user)
+                    UserDefaults.standard.set(encoded, forKey: "User")
+                } catch {
+                    fatalError("JSONEncoder failed to encode User()!")
+                }
+            }
+        }
+        .onAppear {
+            if let userData = UserDefaults.standard.data(forKey: "User") {
+                let decoder = JSONDecoder()
+                do {
+                    self.user = try decoder.decode(User.self, from: userData)
+                } catch {
+                    fatalError("JSONDecoder failed to decode userData!")
+                }
+            }
         }
     }
     
