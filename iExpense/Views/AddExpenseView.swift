@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct AddExpenseView: View {
+    @Environment(\.presentationMode) private var presentationMode
+    
     @State private var name: String = ""
     @State private var expenseType = "Personal"
     @State private var amount = ""
@@ -31,11 +33,21 @@ struct AddExpenseView: View {
                 
             }
             .navigationBarTitle("Add Expense")
-            .navigationBarItems(trailing: Button(action: {
-                // Do something
-            }, label: {
-                Text("Save")
-            }))
+            .navigationBarItems(
+                leading: Button(action: {
+                    // Dismiss this sheet
+                    self.presentationMode.wrappedValue.dismiss()
+                    
+                }, label: {
+                    Image(systemName: "xmark")}
+                ),
+                trailing: Button(action: {
+                    // TODO: - Actually save this!
+                    
+                    
+                }, label: {
+                    Text("Save")
+                }))
         }
     }
 }

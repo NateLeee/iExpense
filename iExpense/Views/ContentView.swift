@@ -22,6 +22,8 @@ class Expenses: ObservableObject {
 struct ContentView: View {
     @ObservedObject var expenses = Expenses()
     
+    @State private var showingSheet = false
+    
     var body: some View {
         NavigationView {
             List {
@@ -37,11 +39,15 @@ struct ContentView: View {
                 Button(action: {
                     // self.expenses.items.append(ExpenseItem(name: "Test", type: "Personal", amount: 9))
                     // TODO: - Make it real
+                    self.showingSheet = true
+                    
                 }) {
                     Image(systemName: "plus")
                 }
             )
-            
+                .sheet(isPresented: $showingSheet) {
+                    AddExpenseView()
+            }
         }
     }
     
