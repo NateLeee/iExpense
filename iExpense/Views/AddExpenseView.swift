@@ -11,11 +11,13 @@ import SwiftUI
 struct AddExpenseView: View {
     @Environment(\.presentationMode) private var presentationMode
     
+    @ObservedObject var expenses: Expenses
+    
     @State private var name: String = ""
     @State private var expenseType = "Personal"
     @State private var amount = ""
     
-    private var expenseTypes = ["Personal", "Business", "Other"]
+    var expenseTypes = ["Personal", "Business", "Other"] // Pay attention! private isn't allowed here!
     
     var body: some View {
         NavigationView {
@@ -34,26 +36,34 @@ struct AddExpenseView: View {
             }
             .navigationBarTitle("Add Expense")
             .navigationBarItems(
-                leading: Button(action: {
-                    // Dismiss this sheet
-                    self.presentationMode.wrappedValue.dismiss()
-                    
-                }, label: {
+                leading: Button(action: dismissSheet, label: {
                     Image(systemName: "xmark")}
                 ),
                 trailing: Button(action: {
-                    // TODO: - Actually save this!
+                    // DONE: - Actually save this!
+                    guard self.name != "", self.amount != "" else {
+                        return
+                    }
                     
+                    self.expenses.items.append(ExpenseItem(name: self.name, type: self.expenseType, amount: Int(self.amount) ?? 0))
+                    
+                    // Dismiss the sheet finally...
+                    self.dismissSheet()
                     
                 }, label: {
                     Text("Save")
                 }))
         }
     }
+    
+    private func dismissSheet() {
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
 }
 
 struct AddExpenseView_Previews: PreviewProvider {
     static var previews: some View {
-        AddExpenseView()
+        AddExpenseView(expenses: Expenses())
     }
 }

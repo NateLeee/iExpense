@@ -35,7 +35,7 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("iExpense")
-            .navigationBarItems(leading: EditButton(), trailing:
+            .navigationBarItems(leading: expenses.items.count > 0 ? EditButton() : nil, trailing:
                 Button(action: {
                     // self.expenses.items.append(ExpenseItem(name: "Test", type: "Personal", amount: 9))
                     // TODO: - Make it real
@@ -46,7 +46,7 @@ struct ContentView: View {
                 }
             )
                 .sheet(isPresented: $showingSheet) {
-                    AddExpenseView()
+                    AddExpenseView(expenses: self.expenses)
             }
         }
     }
