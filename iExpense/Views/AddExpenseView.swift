@@ -41,7 +41,7 @@ struct AddExpenseView: View {
                 ),
                 trailing: Button(action: {
                     // DONE: - Actually save this!
-                    guard self.name != "", self.amount != "" else {
+                    guard self.name != "", Int(self.amount) != nil else {
                         return
                     }
                     
