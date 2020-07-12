@@ -18,36 +18,36 @@ struct AmountModifier: ViewModifier {
             return content
                 .font(Font.body.weight(.light))
                 .foregroundColor(.gray)
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 1))
+                // .padding()
+                // .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 1))
             
         case 11 ... 20:
             return content
                 .font(Font.body.weight(.regular))
                 .foregroundColor(.black)
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 2))
+                // .padding()
+                // .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 2))
             
         case 21 ... 100:
             return content
                 .font(Font.body.weight(.semibold))
                 .foregroundColor(.purple)
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.purple, lineWidth: 3))
+                // .padding()
+                // .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.purple, lineWidth: 3))
             
         case 101 ... 1000:
             return content
                 .font(Font.body.weight(.bold))
                 .foregroundColor(.red)
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.red, lineWidth: 4))
+                // .padding()
+                // .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.red, lineWidth: 4))
             
         default:
             return content
                 .font(Font.body.weight(.heavy))
                 .foregroundColor(.black)
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 5))
+                // .padding()
+                // .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 5))
         }
     }
 }
