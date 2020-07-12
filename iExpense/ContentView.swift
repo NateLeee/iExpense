@@ -8,20 +8,32 @@
 
 import SwiftUI
 
-class User: ObservableObject {
-    @Published var firstName = "Bilbo"
-    @Published var lastName = "Baggins"
-}
 
-struct ContentView: View {
-    @ObservedObject var user = User()
+struct SecondView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    var name: String
     
     var body: some View {
         VStack {
-            Text("Your name is \(user.firstName) \(user.lastName).")
+            Text("Hello \(name)")
             
-            TextField("First name", text: $user.firstName)
-            TextField("Last name", text: $user.lastName)
+            Button("Dismiss this sheet") {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        }
+    }
+}
+
+struct ContentView: View {
+    @State private var showingSheet = false
+    
+    var body: some View {
+        Button("Show Sheet") {
+            self.showingSheet = true
+        }
+        .sheet(isPresented: $showingSheet) {
+            SecondView(name: "Nate Lee")
         }
     }
 }
