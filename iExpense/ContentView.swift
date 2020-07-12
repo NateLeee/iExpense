@@ -8,40 +8,40 @@
 
 import SwiftUI
 
-struct User: Codable {
-    var firstName: String
-    var lastName: String
+struct ExpenseItem {
+    var id = UUID()
+    var name: String
+    var type: String
+    var amount: Int
+}
+
+class Expenses: ObservableObject {
+    @Published var items = [ExpenseItem]()
 }
 
 struct ContentView: View {
-    @State private var user = User(firstName: "Nate", lastName: "Lee")
+    @ObservedObject var expenses = Expenses()
     
     var body: some View {
-        VStack {
-            Text("\(user.firstName) \(user.lastName)")
-            
-            TextField("First Name", text: $user.firstName)
-            TextField("Last Name", text: $user.lastName)
-            
-            Button("Serialize") {
-                let encoder = JSONEncoder()
-                do {
-                    let encoded = try encoder.encode(self.user)
-                    UserDefaults.standard.set(encoded, forKey: "User")
-                } catch {
-                    fatalError("JSONEncoder failed to encode User()!")
+        NavigationView {
+            List {
+                ForEach(expenses.items, id: \.id) {
+                    Text("\($0.name) \($0.type) \($0.amount)")
+                }
+                .onDelete { (indexSet) in
+                    self.expenses.items.remove(atOffsets: indexSet)
                 }
             }
-        }
-        .onAppear {
-            if let userData = UserDefaults.standard.data(forKey: "User") {
-                let decoder = JSONDecoder()
-                do {
-                    self.user = try decoder.decode(User.self, from: userData)
-                } catch {
-                    fatalError("JSONDecoder failed to decode userData!")
+            .navigationBarTitle("iExpense")
+            .navigationBarItems(leading:EditButton())
+            .navigationBarItems(trailing:
+                Button(action: {
+                    self.expenses.items.append(ExpenseItem(name: "Test", type: "Personal", amount: 9))
+                }) {
+                    Image(systemName: "plus")
                 }
-            }
+            )
+                
         }
     }
     
