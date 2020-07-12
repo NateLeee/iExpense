@@ -13,41 +13,33 @@ struct AmountModifier: ViewModifier {
     var amount: Int
     
     func body(content: Content) -> some View {
-        content
-            .font(determineFont())
-            .foregroundColor(determineColor())
-    }
-    
-    private func determineColor() -> Color {
         switch amount {
         case 0 ... 10:
-            return Color.gray
+            return content
+                .font(Font.body.weight(.light))
+                .foregroundColor(.gray)
+            
         case 11 ... 20:
-            return Color.black
+            return content
+                .font(Font.body.weight(.regular))
+                .foregroundColor(.black)
+            
         case 21 ... 100:
-            return Color.purple
+            return content
+                .font(Font.body.weight(.semibold))
+                .foregroundColor(.purple)
+            
         case 101 ... 1000:
-            return Color.red
+            return content
+                .font(Font.body.weight(.bold))
+                .foregroundColor(.red)
+            
         default:
-            return Color.black
+            return content
+                .font(Font.body.weight(.heavy))
+                .foregroundColor(.black)
         }
     }
-    
-    private func determineFont() -> Font {
-        switch amount {
-        case 0 ... 10:
-            return Font.body.weight(.light)
-        case 11 ... 20:
-            return Font.body.weight(.regular)
-        case 21 ... 100:
-            return Font.body.weight(.semibold)
-        case 101 ... 1000:
-            return Font.body.weight(.bold)
-        default:
-            return Font.body.weight(.heavy)
-        }
-    }
-    
 }
 
 extension View {
