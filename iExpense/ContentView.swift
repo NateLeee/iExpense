@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ExpenseItem {
+struct ExpenseItem: Identifiable {
     var id = UUID()
     var name: String
     var type: String
@@ -25,15 +25,15 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(expenses.items, id: \.id) {
-                    Text("\($0.name) \($0.type) \($0.amount)")
+                ForEach(expenses.items) { item in
+                    Text("\(item.name) \(item.type) \(item.amount)")
                 }
                 .onDelete { (indexSet) in
                     self.expenses.items.remove(atOffsets: indexSet)
                 }
             }
             .navigationBarTitle("iExpense")
-            .navigationBarItems(leading:EditButton())
+            .navigationBarItems(leading: EditButton())
             .navigationBarItems(trailing:
                 Button(action: {
                     self.expenses.items.append(ExpenseItem(name: "Test", type: "Personal", amount: 9))
