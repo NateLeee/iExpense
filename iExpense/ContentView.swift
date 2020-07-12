@@ -9,33 +9,34 @@
 import SwiftUI
 
 
-struct SecondView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
-    var name: String
-    
-    var body: some View {
-        VStack {
-            Text("Hello \(name)")
-            
-            Button("Dismiss this sheet") {
-                self.presentationMode.wrappedValue.dismiss()
-            }
-        }
-    }
-}
-
 struct ContentView: View {
-    @State private var showingSheet = false
+    @State private var numbers: [Int] = [Int]()
+    @State private var currentNumber = 1
     
     var body: some View {
-        Button("Show Sheet") {
-            self.showingSheet = true
-        }
-        .sheet(isPresented: $showingSheet) {
-            SecondView(name: "Nate Lee")
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(numbers, id: \.self) {
+                        Text("\($0)")
+                    }
+                    .onDelete(perform: deleteRow)
+                }
+                
+                Button("Add a number") {
+                    self.numbers.append(self.currentNumber)
+                    self.currentNumber += 1
+                }
+            }
+            .navigationBarTitle("iExpense")
+            .navigationBarItems(trailing: EditButton())
         }
     }
+    
+    func deleteRow(using indexSet: IndexSet) {
+        numbers.remove(atOffsets: indexSet)
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
