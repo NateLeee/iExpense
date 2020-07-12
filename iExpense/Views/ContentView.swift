@@ -35,7 +35,8 @@ struct ContentView: View {
             .navigationBarTitle("iExpense")
             .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {
-                    self.expenses.items.append(ExpenseItem(name: "Test", type: "Personal", amount: 9))
+                    // self.expenses.items.append(ExpenseItem(name: "Test", type: "Personal", amount: 9))
+                    // TODO: - Make it real
                 }) {
                     Image(systemName: "plus")
                 }

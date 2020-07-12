@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA27C3D024BB3E0400D2FA99 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA27C3CF24BB3E0400D2FA99 /* AddExpenseView.swift */; };
 		FABE306924BAD1CB007F3709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE306824BAD1CB007F3709 /* AppDelegate.swift */; };
 		FABE306B24BAD1CB007F3709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE306A24BAD1CB007F3709 /* SceneDelegate.swift */; };
 		FABE306D24BAD1CB007F3709 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE306C24BAD1CB007F3709 /* ContentView.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA27C3CF24BB3E0400D2FA99 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		FABE306524BAD1CB007F3709 /* iExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABE306824BAD1CB007F3709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FABE306A24BAD1CB007F3709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA27C3CE24BB3DF200D2FA99 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FABE306C24BAD1CB007F3709 /* ContentView.swift */,
+				FA27C3CF24BB3E0400D2FA99 /* AddExpenseView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FABE305C24BAD1CB007F3709 = {
 			isa = PBXGroup;
 			children = (
@@ -58,7 +69,7 @@
 			children = (
 				FABE306824BAD1CB007F3709 /* AppDelegate.swift */,
 				FABE306A24BAD1CB007F3709 /* SceneDelegate.swift */,
-				FABE306C24BAD1CB007F3709 /* ContentView.swift */,
+				FA27C3CE24BB3DF200D2FA99 /* Views */,
 				FABE306E24BAD1CF007F3709 /* Assets.xcassets */,
 				FABE307324BAD1CF007F3709 /* LaunchScreen.storyboard */,
 				FABE307624BAD1CF007F3709 /* Info.plist */,
@@ -149,6 +160,7 @@
 				FABE306924BAD1CB007F3709 /* AppDelegate.swift in Sources */,
 				FABE306B24BAD1CB007F3709 /* SceneDelegate.swift in Sources */,
 				FABE306D24BAD1CB007F3709 /* ContentView.swift in Sources */,
+				FA27C3D024BB3E0400D2FA99 /* AddExpenseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
