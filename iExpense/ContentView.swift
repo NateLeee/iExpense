@@ -33,15 +33,14 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("iExpense")
-            .navigationBarItems(leading: EditButton())
-            .navigationBarItems(trailing:
+            .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {
                     self.expenses.items.append(ExpenseItem(name: "Test", type: "Personal", amount: 9))
                 }) {
                     Image(systemName: "plus")
                 }
             )
-                
+            
         }
     }
     
