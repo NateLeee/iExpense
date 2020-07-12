@@ -17,6 +17,8 @@ struct AddExpenseView: View {
     @State private var expenseType = "Personal"
     @State private var amount = ""
     
+    @State private var showingAlert = false
+    
     var expenseTypes = ["Personal", "Business", "Other"] // Pay attention! private isn't allowed here!
     
     var body: some View {
@@ -42,6 +44,7 @@ struct AddExpenseView: View {
                 trailing: Button(action: {
                     // DONE: - Actually save this!
                     guard self.name != "", Int(self.amount) != nil else {
+                        self.showingAlert.toggle()
                         return
                     }
                     
@@ -53,6 +56,13 @@ struct AddExpenseView: View {
                 }, label: {
                     Text("Save")
                 }))
+                .alert(isPresented: $showingAlert) { () -> Alert in
+                    Alert(
+                        title: Text("Check Your Input"),
+                        message: Text("Expense item's name shouldn't be empty nor amount be other than number!"),
+                        dismissButton: .cancel()
+                    )
+            }
         }
     }
     
