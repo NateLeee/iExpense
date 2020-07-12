@@ -50,7 +50,21 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(expenses.items) { item in
-                    Text("\(item.name) \(item.type) \(item.amount)")
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("\(item.type)")
+                                .font(.subheadline)
+                            
+                            Text("\(item.name)")
+                                .font(.headline)
+                        }
+                        
+                        Spacer()
+                        
+                        Text("\(item.amount)")
+                    }
+                    
+                    
                 }
                 .onDelete { (indexSet) in
                     self.expenses.items.remove(atOffsets: indexSet)
@@ -59,9 +73,8 @@ struct ContentView: View {
             .navigationBarTitle("iExpense")
             .navigationBarItems(leading: expenses.items.count > 0 ? EditButton() : nil, trailing:
                 Button(action: {
-                    // self.expenses.items.append(ExpenseItem(name: "Test", type: "Personal", amount: 9))
-                    // TODO: - Make it real
-                    self.showingSheet = true
+                    // Show Add Expense Sheet
+                    self.showingSheet.toggle()
                     
                 }) {
                     Image(systemName: "plus")
