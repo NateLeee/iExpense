@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 
 struct AmountModifier: ViewModifier {
+    var amount: Int
+    
     func body(content: Content) -> some View {
         content
             .font(.largeTitle)
@@ -21,7 +23,7 @@ struct AmountModifier: ViewModifier {
 }
 
 extension View {
-    func amountStyle() -> some View {
-        self.modifier(AmountModifier())
+    func amountStyle(amount: Int) -> some View {
+        self.modifier(AmountModifier(amount: amount))
     }
 }

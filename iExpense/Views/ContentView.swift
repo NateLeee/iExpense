@@ -62,7 +62,7 @@ struct ContentView: View {
                         Spacer()
                         
                         Text("\(item.amount)")
-                            .amountStyle()
+                            .amountStyle(amount: item.amount)
                     }
                     
                     
